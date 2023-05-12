@@ -3,7 +3,7 @@ import React from 'react';
 function LotteryData() {
   return (
     <div>
-      <h1>Data Page</h1>
+      <h1>Pick 3 Data</h1>
     </div>
   );
 }
