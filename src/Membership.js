@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import Select from 'react-select';
 import PaymentForm from './PaymentForm';
+import './Membership.css';
 
 function Membership() {
     const [name, setName] = useState("");
@@ -32,22 +33,22 @@ function Membership() {
     };
   
     return (
-      <div>
+      <div className="container">
         <h2>Become a Member</h2>
-        <form onSubmit={handleRegisterSubmit}>
-          <label>
+        <form className="form" onSubmit={handleRegisterSubmit}>
+          <label className="label">
             Name:
-            <input type="text" value={name} onChange={e => setName(e.target.value)} />
+            <input className="input" type="text" value={name} onChange={e => setName(e.target.value)} />
           </label>
-          <label>
+          <label className="label">
             Email:
-            <input type="email" value={email} onChange={e => setEmail(e.target.value)} />
+            <input className="input" type="email" value={email} onChange={e => setEmail(e.target.value)} />
           </label>
-          <label>
+          <label className="label">
             Password:
-            <input type="password" value={password} onChange={e => setPassword(e.target.value)} />
+            <input className="input" type="password" value={password} onChange={e => setPassword(e.target.value)} />
           </label>
-          <label>
+          <label className="label">
             Select Which States You Play Pick 3:
             <Select 
               options={states}
@@ -55,14 +56,12 @@ function Membership() {
               onChange={selectedOptions => setSelectedStates(selectedOptions)}
             />
           </label>
-          <input type="submit" value="Register" />
+          <input className="input" type="submit" value="Register" />
         </form>
-  
-        {!showPayment && <button onClick={handleJoinNow}>Join Now!</button>}
+    
+        {!showPayment && <button className="button" onClick={handleJoinNow}>Join Now!</button>}
         {showPayment && <PaymentForm />}
       </div>
     );
-  }
-  
-  export default Membership;
-  
+}
+export default Membership;
