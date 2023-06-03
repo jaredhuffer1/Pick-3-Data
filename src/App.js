@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import LotteryData from './LotteryData';
 import Membership from './Membership';
 import Blog from './Blog';
 import PaymentForm from './PaymentForm';
+import About from './About';
+import Header from './Header';
 
 function App() {
   const [showPaymentForm, setShowPaymentForm] = useState(false);
@@ -15,24 +17,13 @@ function App() {
   return (
     <Router>
       <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/lottery">Lottery Data</Link>
-            </li>
-            <li>
-              <Link to="/membership">Membership</Link>
-            </li>
-            <li>
-              <Link to="/blog">Blog</Link>
-            </li>
-          </ul>
-        </nav>
+        <Header />
 
         <Routes>
           <Route path="/lottery" element={<LotteryData />} />
           <Route path="/membership" element={<Membership onPayButtonClick={handlePayButtonClick} />} />
           <Route path="/blog" element={<Blog />} />
+          <Route path="/about" element={<About />} />
         </Routes>
 
         {showPaymentForm && <PaymentForm />}

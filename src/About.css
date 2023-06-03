@@ -1,0 +1,49 @@
+/* About.css */
+
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    color: #333;
+    background-color: #f4f4f4;
+    line-height: 1.6;
+}
+
+.about-container {
+    max-width: 800px;
+    margin: auto;
+    padding: 40px;
+    background: #fff;
+    box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.1);
+    border-radius: 10px;
+}
+
+.about-container h1 {
+    color: #333;
+    font-size: 2.5em;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.about-container p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+.about-container ul {
+    padding-left: 1.2em;
+}
+
+.link-home {
+    display: inline-block;
+    font-size: 1.2em;
+    background-color: #3498db;
+    color: #fff;
+    text-align: center;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.link-home:hover {
+    background-color: #2980b9;
+}
