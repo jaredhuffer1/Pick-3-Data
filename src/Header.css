@@ -3,11 +3,12 @@
 .header {
     background-color: #333;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+    display: flex;
+    align-items: center;
   }
   
   .header nav {
-    width: 90%;
-    max-width: 1200px;
+    flex-grow: 1;
     margin: 0 auto;
     padding: 20px 0;
   }
@@ -30,7 +31,7 @@
     padding: 10px;
     border-radius: 5px;
     color: #fff;
-    background-color: #632323;
+    background-color: #333;
     transition: background-color 0.3s ease-in-out;
   }
   
@@ -41,4 +42,29 @@
   .active-link {
     background-color: #555;
   }
+  
+  .page-name {
+    color: #fff;
+    font-size: 24px;
+    margin: 0;
+    padding: 10px;
+  }
+  
+  /* Responsive Styles */
+  
+  @media screen and (max-width: 768px) {
+    .header {
+      flex-direction: column;
+      padding: 10px;
+    }
+  
+    .header nav {
+      margin: 10px auto;
+    }
+  
+    .header li {
+      margin: 10px;
+    }
+  }
+  
   
