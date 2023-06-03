@@ -59,7 +59,7 @@ function Membership() {
           <input className="input" type="submit" value="Register" />
         </form>
     
-        {!showPayment && <button className="button" onClick={handleJoinNow}>Join Now!</button>}
+        {!showPayment && <button className="button" onClick={handleJoinNow}>Become a Member!</button>}
         {showPayment && <PaymentForm />}
       </div>
     );
