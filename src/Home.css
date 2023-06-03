@@ -1,0 +1,36 @@
+/* Header.css */
+
+.header {
+    background-color: #f8f9fa;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+}
+
+.header nav {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+.header ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    text-align: center;
+}
+
+.header li {
+    display: inline;
+    margin: 0 15px;
+}
+
+.header a {
+    text-decoration: none;
+    color: #333;
+    font-size: 18px;
+}
+
+.active-link {
+    color: #007bff;
+}
