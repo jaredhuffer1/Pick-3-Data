@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { loadStripe } from '@stripe/stripe-js';
+import './PaymentForm.css';
 
 const stripePromise = loadStripe('YOUR_PUBLISHABLE_KEY');
 
@@ -8,6 +9,7 @@ function PaymentForm() {
   const [cardNumber, setCardNumber] = useState('');
   const [expiry, setExpiry] = useState('');
   const [cvv, setCvv] = useState('');
+  const [showForm, setShowForm] = useState(true);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -19,7 +21,7 @@ function PaymentForm() {
       cvv: cvv,
     };
 
-     //Create a Stripe token using the card details
+    // Create a Stripe token using the card details
     const stripe = await stripePromise;
     const response = await fetch('/create-payment-token', {
       method: 'POST',
@@ -49,44 +51,53 @@ function PaymentForm() {
     }
   };
 
+  const handleToggleForm = () => {
+    setShowForm(!showForm);
+  };
+
   return (
-    <div>
-      <h2>Payment Information</h2>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Card Holder's Name:
-          <input
-            type="text"
-            value={cardName}
-            onChange={(e) => setCardName(e.target.value)}
-          />
-        </label>
-        <label>
-          Card Number:
-          <input
-            type="text"
-            value={cardNumber}
-            onChange={(e) => setCardNumber(e.target.value)}
-          />
-        </label>
-        <label>
-          Expiry Date:
-          <input
-            type="text"
-            value={expiry}
-            onChange={(e) => setExpiry(e.target.value)}
-          />
-        </label>
-        <label>
-          CVV:
-          <input
-            type="text"
-            value={cvv}
-            onChange={(e) => setCvv(e.target.value)}
-          />
-        </label>
-        <button type="submit">Submit Payment</button>
-      </form>
+    <div className="payment-form-container">
+      <h2>Become a Member</h2>
+      {showForm && (
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label>Cardholder Name:</label>
+            <input
+              type="text"
+              value={cardName}
+              onChange={(e) => setCardName(e.target.value)}
+            />
+          </div>
+          <div className="form-group">
+            <label>Card Number:</label>
+            <input
+              type="text"
+              value={cardNumber}
+              onChange={(e) => setCardNumber(e.target.value)}
+            />
+          </div>
+          <div className="form-group">
+            <label>Expiry:</label>
+            <input
+              type="text"
+              value={expiry}
+              onChange={(e) => setExpiry(e.target.value)}
+            />
+          </div>
+          <div className="form-group">
+            <label>CVV:</label>
+            <input
+              type="text"
+              value={cvv}
+              onChange={(e) => setCvv(e.target.value)}
+            />
+          </div>
+          <button type="submit">Pay For Membership</button>
+        </form>
+      )}
+      <button onClick={handleToggleForm}>
+        {showForm ? 'Hide Form' : 'Show Form'}
+      </button>
     </div>
   );
 }

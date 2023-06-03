@@ -34,7 +34,7 @@ function Membership() {
   
     return (
       <div className="container">
-        <h2>Become a Member</h2>
+        <h2>Register For Free</h2>
         <form className="form" onSubmit={handleRegisterSubmit}>
           <label className="label">
             Name:
