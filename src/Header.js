@@ -9,24 +9,18 @@ function Header() {
       <nav>
         <ul>
           <li>
-            <NavLink exact to="/" activeClassName="active-link">
+            <NavLink exact={true.toString()} to="/" activeclassname="active-link">
               Home
             </NavLink>
           </li>
           <li>
-            <NavLink to="/lottery" activeClassName="active-link">
-              Lottery Data
-            </NavLink>
+            <NavLink to="/lottery">Lottery Data</NavLink>
           </li>
           <li>
-            <NavLink to="/membership" activeClassName="active-link">
-              Membership
-            </NavLink>
+            <NavLink to="/membership">Membership</NavLink>
           </li>
           <li>
-            <NavLink to="/blog" activeClassName="active-link">
-              Blog
-            </NavLink>
+            <NavLink to="/blog">Sign In</NavLink>
           </li>
         </ul>
       </nav>

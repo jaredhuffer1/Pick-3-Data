@@ -1,10 +1,9 @@
-/* Header.css */
-
 .header {
     background-color: #333;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.06);
     display: flex;
     align-items: center;
+    overflow-x: auto; /* Allow horizontal scrolling on small screens */
   }
   
   .header nav {
@@ -51,20 +50,20 @@
   }
   
   /* Responsive Styles */
-  
   @media screen and (max-width: 768px) {
     .header {
-      flex-direction: column;
-      padding: 10px;
+      flex-wrap: wrap; /* Allow items to wrap on small screens */
+      justify-content: center; /* Center items horizontally */
     }
   
     .header nav {
+      flex-grow: 0; /* Disable growing to prevent overflow */
       margin: 10px auto;
+      overflow: auto; /* Enable horizontal scrolling on small screens */
     }
   
     .header li {
       margin: 10px;
     }
   }
-  
   
