@@ -25,6 +25,7 @@ Pick 3 Data is a web application that provides lottery data and membership featu
 1. Clone the repository:
    ```bash
    git clone https://github.com/your-username/Pick-3-Data.git
+   ```
 
 Navigate to the project directory:
 
@@ -45,8 +46,3 @@ Contributions to Pick 3 Data are welcome! If you have any suggestions, bug repor
 
 License
 This project is licensed under the MIT License.
-
-css
-
-
-Feel free to modify and expand upon this template to include more specific details about your project.
