@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import './Blog.css'; // Import the CSS file for styling
 
-function SignInForm() {
+function Blog() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -12,10 +13,10 @@ function SignInForm() {
   };
 
   return (
-    <div>
+    <div className="blog-container">
       <h2>Sign In</h2>
       <form onSubmit={handleSubmit}>
-        <div>
+        <div className="form-group">
           <label>Email:</label>
           <input
             type="email"
@@ -23,7 +24,7 @@ function SignInForm() {
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
-        <div>
+        <div className="form-group">
           <label>Password:</label>
           <input
             type="password"
@@ -37,4 +38,4 @@ function SignInForm() {
   );
 }
 
-export default SignInForm;
+export default Blog;
