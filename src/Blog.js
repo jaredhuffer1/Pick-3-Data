@@ -14,7 +14,7 @@ function Blog() {
 
   return (
     <div className="blog-container">
-      <h2>Sign In</h2>
+      <h2>SignIn</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label>Email:</label>
