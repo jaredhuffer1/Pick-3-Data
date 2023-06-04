@@ -6,6 +6,7 @@ const allStates = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Co
 function LotteryData() {
   const [selectedState, setSelectedState] = useState('');
   const [lotteryData, setLotteryData] = useState({});
+  const [showDeleteButton, setShowDeleteButton] = useState(null);
 
   const handleStateChange = (event) => {
     setSelectedState(event.target.value);
@@ -19,6 +20,49 @@ function LotteryData() {
       [selectedState]: [...(prevData[selectedState] || []), newData],
     }));
     event.target.reset();
+  };
+
+  const handleDeleteNumber = (numberToDelete) => {
+    setLotteryData((prevData) => {
+      const updatedData = { ...prevData };
+      updatedData[selectedState] = updatedData[selectedState].filter((number) => number !== numberToDelete);
+      return updatedData;
+    });
+    setShowDeleteButton(null);
+  };
+
+  const handleNumberClick = (number) => {
+    setShowDeleteButton(number);
+  };
+
+  const renderNumberGroups = () => {
+    const numbers = lotteryData[selectedState] || [];
+    const numberGroups = [];
+
+    for (let i = 0; i < numbers.length; i += 7) {
+      const group = numbers.slice(i, i + 7);
+      numberGroups.push(group);
+    }
+
+    return numberGroups.map((group, index) => (
+      <div key={index} className="number-group">
+        {group.map((number) => (
+          <div key={number} className="number-item">
+            <span
+              className={`number ${number.startsWith('s-') ? 'strike-through' : ''}`}
+              onClick={() => handleNumberClick(number)}
+            >
+              {number.startsWith('s-') ? number.slice(2) : number}
+            </span>
+            {(showDeleteButton === number) && 
+              <button className="delete-button" onClick={() => handleDeleteNumber(number)}>
+                Delete
+              </button>
+            }
+          </div>
+        ))}
+      </div>
+    ));
   };
 
   return (
@@ -41,11 +85,7 @@ function LotteryData() {
       {selectedState && (
         <div className="lottery-data-results">
           <h2>{selectedState} Numbers:</h2>
-          <ul>
-            {lotteryData[selectedState]?.map((number) => (
-              <li key={number}>{number}</li>
-            ))}
-          </ul>
+          {renderNumberGroups()}
         </div>
       )}
     </div>
@@ -53,3 +93,5 @@ function LotteryData() {
 }
 
 export default LotteryData;
+
+        
