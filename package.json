@@ -1,7 +1,7 @@
 {
   "name": "pick-3-data",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "homepage": "https://jaredhuffer1.github.io/Pick-3-Data",
   "dependencies": {
     "@stripe/stripe-js": "^1.52.1",
