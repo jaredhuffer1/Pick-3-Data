@@ -58,3 +58,44 @@ h2 {
 .hide-form-button:hover {
   background-color: #aaa;
 }
+
+.styled-select {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+.styled-select select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.select-arrow {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  width: 8px;
+  height: 8px;
+  border-top: 4px solid #333;
+  border-right: 4px solid #333;
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
+.styled-select select:focus + .select-arrow {
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.styled-select select:disabled + .select-arrow {
+  border-top-color: #999;
+  border-right-color: #999;
+  opacity: 0.5;
+}

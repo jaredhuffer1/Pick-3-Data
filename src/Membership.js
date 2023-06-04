@@ -9,10 +9,10 @@ function Membership() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [selectedStates, setSelectedStates] = useState([]);
-    const [showPayment, setShowPayment] = useState(false); // State variable to track visibil
-  
-    const states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'].map(state => ({ label: state, value: state }));
-  
+    const [showPayment, setShowPayment] = useState(false);
+
+    const states = ['Arizona', 'California', 'Florida', 'Georgia', 'Illinois', 'Nevada', 'New York', 'North Carolina', 'North Dakota', 'Ohio', 'Pennsylvania', 'South Carolina', 'Tennessee', 'Texas', 'Virginia'].map(state => ({ label: state, value: state }));
+
     const handleRegisterSubmit = async (event) => {
       event.preventDefault();
       try {
@@ -27,13 +27,25 @@ function Membership() {
         console.error(error);
       }
     };
-  
+
     const handleJoinNow = () => {
-      setShowPayment(true); // Show the payment section
+      setShowPayment(true);
     };
-  
+
     return (
       <div className="container">
+        <h1>Membership Info</h1>
+        <p>Thank you for visiting the membership page. Here we'll give you an easy breaking down about how to register.</p>
+        <p>Here are the states that we provide data for:</p>
+        <ol>
+          {states.map(state => <li key={state.value}>{state.label}</li>)}
+        </ol>
+        <p>Data costs: we offer a very basic monthly fee of $10.00</p>
+        <p>Broken down you're only paying 33¢'s a day.</p>
+        <p>After payment via credit card, you'll be sent your password to unlock the system so you can gain access to the state data you want to play in.</p>
+        <p>Understanding the data is simple and there aren't 100's of variables you have to interpret on your own like many other systems on the web.</p>
+        <p>On the state data page we provide players with the highest statistical value based on our algorithms....the format is way easier and with our system there is nothing to download to clog your computer.</p>
+        <p>We provide the time-consuming data crunching and you reap the rewards.</p>
         <h2>Register For Free</h2>
         <form className="form" onSubmit={handleRegisterSubmit}>
           <label className="label">
