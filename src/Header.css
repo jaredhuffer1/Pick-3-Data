@@ -4,13 +4,11 @@
     display: flex;
     align-items: center;
     padding: 20px 0;
-    justify-content: space-around; /* space items evenly */
+    justify-content: space-between;
   }
   
   .header nav {
     display: flex;
-    justify-content: space-between;
-    width: 50%;
   }
   
   .header ul {
@@ -19,6 +17,7 @@
     padding: 0;
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap; /* Enable wrap */
   }
   
   .header li {
@@ -52,20 +51,18 @@
   
   /* Responsive Styles */
   @media screen and (max-width: 768px) {
-    .header {
-      flex-direction: column; /* Stack items vertically on smaller screens */
-    }
-  
-    .header nav {
-      width: 100%; /* Take up full width on smaller screens */
-    }
-  
-    .header ul {
-      flex-direction: column; /* Stack list items vertically */
-    }
-  
     .header li {
-      margin: 10px 0; /* Increase vertical spacing */
+      margin: 5px; /* Reduce margin */
+    }
+  
+    .header a {
+      font-size: 16px; /* Reduce font size */
+      padding: 8px; /* Reduce padding */
+    }
+  
+    .page-name {
+      font-size: 20px; /* Reduce page-name font size */
+      padding: 8px; /* Reduce page-name padding */
     }
   }
   
