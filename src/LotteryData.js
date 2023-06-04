@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import './LotteryData.css';
 
-const allStates = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'];
+const allStates = ['North Carolina', 'South Carolina', 'Virginia', 'Pennsylvania', 'New York', 'Georgia', 'Florida', 'Texas', 'Illinois', 'California', 'Nevada', 'Arizona', 'Indiana', 'Ohio', 'Tennessee'].map(state => ({ label: state, value: state }));
 
 function LotteryData() {
-  const [selectedState, setSelectedState] = useState('');
+  const [selectedState, setSelectedState] = useState(null);
   const [lotteryData, setLotteryData] = useState({});
   const [showDeleteButton, setShowDeleteButton] = useState(null);
 
-  const handleStateChange = (event) => {
-    setSelectedState(event.target.value);
+  const handleStateChange = (selectedStateOption) => {
+    setSelectedState(selectedStateOption);
   };
 
   const handleDataUpdate = (event) => {
@@ -17,7 +17,7 @@ function LotteryData() {
     const newData = event.target.elements.data.value;
     setLotteryData((prevData) => ({
       ...prevData,
-      [selectedState]: [...(prevData[selectedState] || []), newData],
+      [selectedState.value]: [...(prevData[selectedState.value] || []), newData],
     }));
     event.target.reset();
   };
@@ -25,7 +25,7 @@ function LotteryData() {
   const handleDeleteNumber = (numberToDelete) => {
     setLotteryData((prevData) => {
       const updatedData = { ...prevData };
-      updatedData[selectedState] = updatedData[selectedState].filter((number) => number !== numberToDelete);
+      updatedData[selectedState.value] = updatedData[selectedState.value].filter((number) => number !== numberToDelete);
       return updatedData;
     });
     setShowDeleteButton(null);
@@ -36,7 +36,7 @@ function LotteryData() {
   };
 
   const renderNumberGroups = () => {
-    const numbers = lotteryData[selectedState] || [];
+    const numbers = lotteryData[selectedState.value] || [];
     const numberGroups = [];
 
     for (let i = 0; i < numbers.length; i += 7) {
@@ -69,22 +69,25 @@ function LotteryData() {
     <div className="lottery-data-container">
       <h1>Number Pool</h1>
       <form className="lottery-data-form" onSubmit={handleDataUpdate}>
-        <label htmlFor="state-select">Select a state:</label>
-        <select id="state-select" value={selectedState} onChange={handleStateChange}>
-          <option value="">Select a state</option>
+        <div>
+          Select a state: 
           {allStates.map((state) => (
-            <option key={state} value={state}>
-              {state}
-            </option>
+            <button 
+              key={state.value} 
+              onClick={() => handleStateChange(state)}
+              className={selectedState && selectedState.value === state.value ? 'active-state' : ''}
+            >
+              {state.label}
+            </button>
           ))}
-        </select>
+        </div>
         <label htmlFor="data">Enter new data:</label>
         <input type="text" id="data" />
         <button type="submit">Add Data</button>
       </form>
       {selectedState && (
         <div className="lottery-data-results">
-          <h2>{selectedState} Numbers:</h2>
+          <h2>{selectedState.label} Numbers:</h2>
           {renderNumberGroups()}
         </div>
       )}
@@ -93,5 +96,3 @@ function LotteryData() {
 }
 
 export default LotteryData;
-
-        

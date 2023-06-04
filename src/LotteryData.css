@@ -1,63 +1,62 @@
 .lottery-data-container {
     text-align: center;
     padding: 20px;
-  }
-  
-  .lottery-data-form {
+}
+
+.lottery-data-form {
     margin-bottom: 20px;
-  }
-  
-  .lottery-data-form label {
+}
+
+.lottery-data-form label {
     display: block;
     margin-bottom: 10px;
-  }
-  
-  .lottery-data-form select,
-  .lottery-data-form input[type="text"] {
+}
+
+.lottery-data-form input[type="text"] {
     width: 100%;
     padding: 10px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
-  }
-  
-  .lottery-data-form button {
+}
+
+.lottery-data-form button {
     padding: 10px 20px;
     background-color: #007bff;
     color: #fff;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-  }
-  
-  .lottery-data-results {
+}
+
+.lottery-data-results {
     margin-top: 20px;
-  }
-  
-  .lottery-data-results h2 {
+}
+
+.lottery-data-results h2 {
     margin-bottom: 10px;
-  }
-  
-  .lottery-data-results .number-group {
+}
+
+.lottery-data-results .number-group {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     margin-bottom: 10px;
-  }
-  
-  .lottery-data-results .number-item {
+}
+
+.lottery-data-results .number-item {
     display: flex;
     align-items: center;
     margin-right: 10px;
     margin-bottom: 5px;
     position: relative;
-  }
-  
-  .lottery-data-results .number-item .number {
+}
+
+.lottery-data-results .number-item .number {
     margin-right: 5px;
-  }
-  
-  .lottery-data-results .number-item .delete-button {
+}
+
+.lottery-data-results .number-item .delete-button {
     background-color: #007bff;
     color: #fff;
     border: none;
@@ -69,13 +68,34 @@
     right: 0;
     opacity: 1;
     transition: all 0.3s ease;
-  }
-  
-  .lottery-data-results .number-item .delete-button:hover {
+}
+
+.lottery-data-results .number-item .delete-button:hover {
     background-color: #0056b3;
-  }
-  
-  .lottery-data-results .number-group .number-item .number.strike-through {
+}
+
+.lottery-data-results .number-group .number-item .number.strike-through {
     text-decoration: line-through;
-  }
-  
+}
+
+.lottery-data-container button {
+    margin: 5px;
+    padding: 10px 20px;
+    border: none;
+    background-color: transparent;
+    color: #007bff;
+    border: 2px solid #007bff;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.lottery-data-container button.active-state {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.lottery-data-container button:hover {
+    background-color: #0056b3;
+    color: #fff;
+}
