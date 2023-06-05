@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import './LotteryData.css';
 
-const allStates = ['North Carolina', 'South Carolina', 'Virginia', 'Pennsylvania', 'New York', 'Georgia', 'Florida', 'Texas', 'Illinois', 'California', 'Nevada', 'Arizona', 'Indiana', 'Ohio', 'Tennessee'].map(state => ({ label: state, value: state }));
+const allStates = ['North Carolina', 'South Carolina', 'Virginia', 'Pennsylvania', 'New York', 'Georgia', 'Florida', 'Texas', 'Illinois', 'California', 'Nevada', 'Arizona', 'Indiana', 'Ohio', 'Tennessee'];
 
 function LotteryData() {
-  const [selectedState, setSelectedState] = useState(null);
+  const [selectedState, setSelectedState] = useState('');
   const [lotteryData, setLotteryData] = useState({});
   const [showDeleteButton, setShowDeleteButton] = useState(null);
 
-  const handleStateChange = (selectedStateOption) => {
-    setSelectedState(selectedStateOption);
+  const handleStateChange = (state) => {
+    setSelectedState(state);
   };
 
   const handleDataUpdate = (event) => {
@@ -17,7 +17,7 @@ function LotteryData() {
     const newData = event.target.elements.data.value;
     setLotteryData((prevData) => ({
       ...prevData,
-      [selectedState.value]: [...(prevData[selectedState.value] || []), newData],
+      [selectedState]: [...(prevData[selectedState] || []), newData],
     }));
     event.target.reset();
   };
@@ -25,7 +25,7 @@ function LotteryData() {
   const handleDeleteNumber = (numberToDelete) => {
     setLotteryData((prevData) => {
       const updatedData = { ...prevData };
-      updatedData[selectedState.value] = updatedData[selectedState.value].filter((number) => number !== numberToDelete);
+      updatedData[selectedState] = updatedData[selectedState].filter((number) => number !== numberToDelete);
       return updatedData;
     });
     setShowDeleteButton(null);
@@ -36,7 +36,7 @@ function LotteryData() {
   };
 
   const renderNumberGroups = () => {
-    const numbers = lotteryData[selectedState.value] || [];
+    const numbers = lotteryData[selectedState] || [];
     const numberGroups = [];
 
     for (let i = 0; i < numbers.length; i += 7) {
@@ -68,26 +68,25 @@ function LotteryData() {
   return (
     <div className="lottery-data-container">
       <h1>Number Pool</h1>
+      <div className="state-buttons">
+        {allStates.map((state) => (
+          <button 
+            key={state} 
+            onClick={() => handleStateChange(state)}
+            className={selectedState === state ? "active-state" : ""}
+          >
+            {state}
+          </button>
+        ))}
+      </div>
       <form className="lottery-data-form" onSubmit={handleDataUpdate}>
-        <div>
-          Select a state: 
-          {allStates.map((state) => (
-            <button 
-              key={state.value} 
-              onClick={() => handleStateChange(state)}
-              className={selectedState && selectedState.value === state.value ? 'active-state' : ''}
-            >
-              {state.label}
-            </button>
-          ))}
-        </div>
         <label htmlFor="data">Enter new data:</label>
         <input type="text" id="data" />
         <button type="submit">Add Data</button>
       </form>
       {selectedState && (
         <div className="lottery-data-results">
-          <h2>{selectedState.label} Numbers:</h2>
+          <h2>{selectedState} Numbers:</h2>
           {renderNumberGroups()}
         </div>
       )}
