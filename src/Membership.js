@@ -4,7 +4,7 @@ import Select from 'react-select';
 import PaymentForm from './PaymentForm';
 import './Membership.css';
 
-function Membership() {
+function Membership({ onPayButtonClick }) {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -20,9 +20,10 @@ function Membership() {
           name,
           email,
           password,
-          selectedStates,
+          selectedStates: selectedStates.map(state => state.value),
         });
         console.log(response.data);
+        onPayButtonClick();
       } catch (error) {
         console.error(error);
       }
@@ -31,6 +32,10 @@ function Membership() {
     const handleJoinNow = () => {
       setShowPayment(true);
     };
+
+    const handlePaymentSuccess = () => {
+      setShowPayment(false);
+    }
 
     return (
       <div className="container">
@@ -70,9 +75,9 @@ function Membership() {
           </label>
           <input className="input" type="submit" value="Register" />
         </form>
-    
+
         {!showPayment && <button className="button" onClick={handleJoinNow}>Become a Member!</button>}
-        {showPayment && <PaymentForm />}
+        {showPayment && <PaymentForm onSuccess={handlePaymentSuccess}/>}
       </div>
     );
 }

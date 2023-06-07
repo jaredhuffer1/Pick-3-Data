@@ -4,7 +4,7 @@ import './PaymentForm.css';
 
 const stripePromise = loadStripe('YOUR_PUBLISHABLE_KEY');
 
-function PaymentForm() {
+function PaymentForm({ onSuccess }) {
   const [cardName, setCardName] = useState('');
   const [cardNumber, setCardNumber] = useState('');
   const [expiry, setExpiry] = useState('');
@@ -48,6 +48,7 @@ function PaymentForm() {
       // Payment successful, show success message
       console.log('Payment successful!');
       // Add logic to handle the successful payment case
+      onSuccess();
     }
   };
 
@@ -95,7 +96,7 @@ function PaymentForm() {
           <button type="submit">Pay For Membership</button>
         </form>
       )}
-      <button onClick={handleToggleForm}>
+      <button className="hide-form-button" onClick={handleToggleForm}>
         {showForm ? 'Hide Form' : 'Show Form'}
       </button>
     </div>
